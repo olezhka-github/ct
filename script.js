@@ -1,6 +1,6 @@
 let serverData = ''; // Глобальна змінна для збереження даних з WebSocket
 let errorMessage = ''; // Глобальна змінна для збереження повідомлення про помилку
-
+document.getElementById('settingsMenu').style.display = 'none'
 document.getElementById("createAccountButton").addEventListener("click", function() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -77,26 +77,32 @@ function clearScreen() {
     document.getElementById('visualResponse').innerText = serverData; // Відображення збережених даних
 }
 
-function showProfile() {
-    document.getElementById('info').style.display = 'none';
-    document.getElementById('scomContent').style.display = 'none';
-    document.getElementById('newContent').style.display = 'none';
-    
-    let profileContent = `<h3>Your Profile</h3><ul>`;
-    const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
-    accounts.forEach(account => {
-        profileContent += `<li>${account.username}</li>`;
-    });
-    profileContent += `</ul><button onclick="showSCOM()">Return</button>`;
-    
-    document.getElementById('profileContent').innerHTML = profileContent;
-    document.getElementById('profileContent').style.display = 'block';
-}
 
 function showSettings() {
-    alert("Settings section will be implemented soon!");
+    document.getElementById('info').style.display = 'none'
+    document.getElementById('scomContent').style.display = 'none'
+    document.getElementById('newContent').style.display = 'none'
+    document.getElementById('visualResponse').style.display = 'none'
+    document.getElementById('mainMenu').style.display = 'none'
+    document.getElementById('congrats').style.display = 'none'
+    document.getElementById('settingsMenu').style.display = 'block'
+   
 }
 
+function eula() {
+    alert('я повідомлення')
+}
+function menuScript() {
+    document.getElementById('mainMenu').style.display = 'block'
+    document.getElementById('congrats').style.display = 'block'
+
+    document.getElementById('settingsMenu').style.display = 'none'
+    document.getElementById('info').style.display = 'none'
+    document.getElementById('scomContent').style.display = 'none'
+    document.getElementById('newContent').style.display = 'none'
+    document.getElementById('visualResponse').style.display = 'none'
+   
+}
 function connectDiscord() {
     window.open("https://discord.gg/xRkNzz7Gvy", "_blank");
 }
