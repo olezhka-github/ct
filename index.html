@@ -11,12 +11,16 @@
 
     <!-- Toolbar -->
     <div id="toolbar">
-        <button onclick="showProfile()">Профіль</button>
+        
         <button onclick="showSettings()">Налаштування</button>
         <button onclick="connectDiscord()">Під'єднатись до діскорд-каналу</button>
+        <button onclick="menuScript()">Головне меню</button>
     </div>
 
-    <h1>Вітаємо в CT!</h1>
+    <div id="congrats">
+        <h1>Вітаємо в CT!</h1>
+
+    </div>
     <div id="mainMenu" class="container">
         <h2>Головне Меню</h2>
         <button onclick="showInfo()">Інформація про застосунок</button>
@@ -24,7 +28,7 @@
     </div>
 
     <div id="info" class="container" style="display:none;">
-        <h2>CT v0.01</h2>
+        <h2>CT v0.02</h2>
         Це = CT.
         <br>Офіційна назва = CommunicaTe.</br>
         <br>Система комунікацій розроблена
@@ -57,6 +61,10 @@
 
     <div id="profileContent" class="container" style="display:none;">
         <!-- Контент профілю тут буде відображатися -->
+    </div>
+    <div id="settingsMenu" class="container">
+        <!--<button onclick="eula()">EULA</button>-->
+        <span>Ваш код сесії = 0D02-B-CLI-DEV-OR.Цей код не є індивідуальним.</span>
     </div>
 
     <script src="script.js"></script>
