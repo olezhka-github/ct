@@ -27,7 +27,7 @@ document.getElementById("loginButton").addEventListener("click", function() {
 });
 
 function sendWebSocketRequest(data) {
-    const socket = new WebSocket("wss://ctserver.onrender.com");
+    const socket = new WebSocket("https://ctserver.onrender.com/");
 
     socket.onopen = function() {
         console.log("WebSocket connection established");
