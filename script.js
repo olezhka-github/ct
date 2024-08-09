@@ -1,6 +1,7 @@
 let serverData = ''; // Глобальна змінна для збереження даних з WebSocket
 let errorMessage = ''; // Глобальна змінна для збереження повідомлення про помилку
-document.getElementById('settingsMenu').style.display = 'none'
+document.getElementById('settingsMenu').style.display = 'none';
+
 document.getElementById("createAccountButton").addEventListener("click", function() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -26,8 +27,7 @@ document.getElementById("loginButton").addEventListener("click", function() {
 });
 
 function sendWebSocketRequest(data) {
-    // Оновлено для підключення до Render сервера
-    const socket = new WebSocket("https://ctserver.onrender.com");
+    const socket = new WebSocket("wss://ctserver.onrender.com");
 
     socket.onopen = function() {
         console.log("WebSocket connection established");
@@ -35,25 +35,41 @@ function sendWebSocketRequest(data) {
     };
 
     socket.onmessage = function(event) {
-        console.log("Received data from server: " + event.data);
-        serverData = event.data; // Збереження даних у глобальну змінну
-        document.getElementById('errorMessage').innerText = '';
-        document.getElementById('serverDataOutput').innerText = serverData;
+        const response = JSON.parse(event.data);
+        console.log("Received data from server: " + response.message || response);
+        document.getElementById('serverDataOutput').innerText = response.message || response;
+
+        if (response.role === 'admin') {
+            document.getElementById('addMoneyButton').style.display = 'block';
+        }
     };
 
     socket.onerror = function(error) {
         console.log("WebSocket error: " + error);
-        errorMessage = "WebSocket error: " + error.message;
-        document.getElementById('errorMessage').innerText = errorMessage;
+        document.getElementById('errorMessage').innerText = "WebSocket error: " + error.message;
     };
 
     socket.onclose = function() {
         console.log("WebSocket connection closed");
-        if (serverData === '') {
-            errorMessage = "WebSocket connection closed before receiving data.";
-            document.getElementById('errorMessage').innerText = errorMessage;
-        }
     };
+}
+
+function showAddMoney() {
+    document.getElementById('addMoneyContent').style.display = 'block';
+}
+
+function addMoney() {
+    const targetUsername = document.getElementById("targetUsername").value;
+    const add_uah = parseFloat(document.getElementById("amountToAdd").value);
+
+    const data = {
+        action: "add_money",
+        username: "olezhkaadmin",
+        target_username: targetUsername,
+        add_uah: add_uah
+    };
+
+    sendWebSocketRequest(data);
 }
 
 function showInfo() {
@@ -77,32 +93,30 @@ function clearScreen() {
     document.getElementById('visualResponse').innerText = serverData; // Відображення збережених даних
 }
 
-
 function showSettings() {
-    document.getElementById('info').style.display = 'none'
-    document.getElementById('scomContent').style.display = 'none'
-    document.getElementById('newContent').style.display = 'none'
-    document.getElementById('visualResponse').style.display = 'none'
-    document.getElementById('mainMenu').style.display = 'none'
-    document.getElementById('congrats').style.display = 'none'
-    document.getElementById('settingsMenu').style.display = 'block'
-   
+    document.getElementById('info').style.display = 'none';
+    document.getElementById('scomContent').style.display = 'none';
+    document.getElementById('newContent').style.display = 'none';
+    document.getElementById('visualResponse').style.display = 'none';
+    document.getElementById('mainMenu').style.display = 'none';
+    document.getElementById('congrats').style.display = 'none';
+    document.getElementById('settingsMenu').style.display = 'block';
 }
 
 function eula() {
-    alert('я повідомлення')
+    alert('я повідомлення');
 }
-function menuScript() {
-    document.getElementById('mainMenu').style.display = 'block'
-    document.getElementById('congrats').style.display = 'block'
 
-    document.getElementById('settingsMenu').style.display = 'none'
-    document.getElementById('info').style.display = 'none'
-    document.getElementById('scomContent').style.display = 'none'
-    document.getElementById('newContent').style.display = 'none'
-    document.getElementById('visualResponse').style.display = 'none'
-   
+function menuScript() {
+    document.getElementById('mainMenu').style.display = 'block';
+    document.getElementById('congrats').style.display = 'block';
+    document.getElementById('settingsMenu').style.display = 'none';
+    document.getElementById('info').style.display = 'none';
+    document.getElementById('scomContent').style.display = 'none';
+    document.getElementById('newContent').style.display = 'none';
+    document.getElementById('visualResponse').style.display = 'none';
 }
+
 function connectDiscord() {
     window.open("https://discord.gg/xRkNzz7Gvy", "_blank");
 }
