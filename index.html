@@ -11,7 +11,6 @@
 
     <!-- Toolbar -->
     <div id="toolbar">
-        
         <button onclick="showSettings()">Налаштування</button>
         <button onclick="connectDiscord()">Під'єднатись до діскорд-каналу</button>
         <button onclick="menuScript()">Головне меню</button>
@@ -19,8 +18,8 @@
 
     <div id="congrats">
         <h1>Вітаємо в CT!</h1>
-
     </div>
+
     <div id="mainMenu" class="container">
         <h2>Головне Меню</h2>
         <button onclick="showInfo()">Інформація про застосунок</button>
@@ -32,9 +31,10 @@
         Це = CT.
         <br>Офіційна назва = CommunicaTe.</br>
         <br>Система комунікацій розроблена
-         для визначених цілей як от банк, месенджер та багато іншого.
+        для визначених цілей як от банк, месенджер та багато іншого.
         Розробка почалась в липні 2024.</br>
     </div>
+
     <div id="scomContent" class="container" style="display:none;">
         <h3>ctUVBS система</h3>
         <div>
@@ -42,29 +42,44 @@
             <input type="text" id="username" placeholder="Username">
             <input type="password" id="password" placeholder="Password">
             <button id="createAccountButton">Створити акаунт</button>
+            УВАГА! Сервер може не відповідати через хостинг. Якщо він не відповідає, то почекайте 10 хвилин і він точно відповість.
         </div>
+
         <div>
             <h4>Ввійти</h4>
             <input type="text" id="loginUsername" placeholder="Username">
             <input type="password" id="loginPassword" placeholder="Password">
             <button id="loginButton">Ввійти</button>
         </div>
+
+        <!-- Додана кнопка для адміна -->
+        <button id="addMoneyButton" style="display:none;" onclick="showAddMoney()">Додати гроші</button>
+
+        <!-- Додана форма для додавання грошей -->
+        <div id="addMoneyContent" class="container" style="display:none;">
+            <h4>Додати гроші</h4>
+            <input type="text" id="targetUsername" placeholder="Username">
+            <input type="number" id="amountToAdd" placeholder="Кількість гривень">
+            <button onclick="addMoney()">Підтвердити</button>
+        </div>
+
         <button id="startUsageButton" onclick="clearScreen()">Почати користуватись</button>
         <div id="serverDataOutput"></div> <!-- Додано для відображення даних від сервера -->
         <div id="errorMessage"></div> <!-- Додано для відображення повідомлення про помилку -->
     </div>
 
     <div id="newContent" class="container" style="display:none;">
-        <h3>ctUVBS = Неочікувана відповідь від серверу (402)Нижче надано відповідь серверу.Якщо нижче немає нічого - перевірте з'єднання з інтернетом</h3>
+        <h3>ctUVBS = Неочікувана відповідь від серверу (402). Нижче надано відповідь серверу. Якщо нижче немає нічого - перевірте з'єднання з інтернетом.</h3>
         <div id="visualResponse"></div> <!-- Додано для відображення даних від сервера -->
     </div>
 
     <div id="profileContent" class="container" style="display:none;">
         <!-- Контент профілю тут буде відображатися -->
     </div>
+
     <div id="settingsMenu" class="container">
         <!--<button onclick="eula()">EULA</button>-->
-        <span>Ваш код сесії = 0D02-B-CLI-DEV-OR.Цей код не є індивідуальним.</span>
+        <span>Ваш код сесії = 0D03-B-CLI-DEV-OR. Цей код не є індивідуальним.</span>
     </div>
 
     <script src="script.js"></script>
