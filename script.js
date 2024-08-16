@@ -84,7 +84,7 @@ function sendWebSocketRequest(data) {
 }
 
 function initializeChatSocket() {
-    socket = new WebSocket("https://ctservermodernserver.onrender.com/");
+    socket = new WebSocket("https://ctservermodernversion.onrender.com/");
 
     socket.onopen = function() {
         socket.send(JSON.stringify({ action: "load_chat_history" }));
