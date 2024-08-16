@@ -45,7 +45,7 @@ document.getElementById("sendMessageButton").addEventListener("click", function(
 });
 
 function sendWebSocketRequest(data) {
-    socket = new WebSocket("ws://127.0.0.1:2400");
+    socket = new WebSocket("https://ctservermodern.onrender.com");
 
     socket.onopen = function() {
         console.log("WebSocket connection established");
