@@ -1,71 +1,116 @@
+/* Стилі для вирівнювання форми */
 body {
-    background: url(bg.jpg);
-    background-size: cover;
-    width: 100%;
+    margin: 0;
+    padding: 0;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('bg.jpeg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.glass-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0;
-    padding: 0;
-    color: rgb(255, 255, 255);
-    font-family: "Poppins", sans-serif;
-}
-
-#toolbar {
-    background-color: #383838;
-    color: white;
-    padding: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-#toolbar button {
-    background-color: #444;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-right: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-#toolbar button:hover {
-    background-color: #555;
-}
-
-.container {
-    width: 300px;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
     padding: 20px;
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(3px);
-    margin-bottom: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 300px;
+    text-align: center;
+}
+
+/* Стилі для інпутів */
+.glass-container input[type="text"],
+.glass-container input[type="password"],
+.glass-container button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: #333;
+    font-size: 16px;
+    text-align: center; /* Додаємо вирівнювання тексту по центру */
+}
+
+/* Стилі для кнопки */
+.glass-container button {
+    background: rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.glass-container button:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* Текст помилки */
+#errorMessage {
+    color: red;
+    margin-top: 10px;
 }
 
 h2 {
-    margin-bottom: 10px;
+    color: azure;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-form {
-    margin-bottom: 20px;
+h3 {
+    color: aliceblue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    margin: 0;
+    z-index: 1001; /* Щоб перекрити інші елементи, якщо потрібно */
 }
 
-label, input, button {
-    display: block;
+#toolbar {
+    background-color: #333;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
     width: 100%;
-    margin-bottom: 10px;
+    z-index: 1000;
 }
 
-button {
-    cursor: pointer;
-    padding: 10px;
-    border: none;
-    background-color: rgba(255, 255, 255, 0.3);
+#toolbar nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+#toolbar nav ul li {
+    padding: 14px 20px;
+}
+
+#toolbar nav ul li a {
     color: white;
-    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+
+#toolbar nav ul li a:hover {
+    background-color: #ddd;
+    color: black;
+}
+h4 {
+    color:azure;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: 40px;
 }
