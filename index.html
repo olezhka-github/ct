@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,79 +7,46 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <noscript>Please enable JavaScript!</noscript>
-
-    <!-- Toolbar -->
+    <!-- Тулбар -->
     <div id="toolbar">
-        <button onclick="showSettings()">Налаштування</button>
-        <button onclick="connectDiscord()">Під'єднатись до діскорд-каналу</button>
-        <button onclick="menuScript()">Головне меню</button>
+        <nav>
+            <ul>
+                <li><a id="menuLink"href="#home">Головна</a></li>
+                <li><a id="forumLink" href="#forum">ctФорум</a></li>
+            </ul>
+        </nav>
+        <h3 id="userDisplay" style="position: absolute; top: 10px; right: 20px;"></h3>
+    </div>
+    
+    <div id="ui">
+        <h4>Вас вітає CT!</h4>
+    </div>
+    
+    <!-- Контейнер для авторизації -->
+    <div id="auth" class="glass-container">
+        <h2>Авторизація</h2>
+        <input type="text" id="loginUsername" placeholder="Ім'я користувача">
+        <input type="password" id="loginPassword" placeholder="Пароль">
+        <button id="loginButton">Увійти</button>
+        <button id="createAccountButton" class="glass-container">Створити акаунт</button>
+        <div id="errorMessage"></div>
     </div>
 
-    <div id="congrats">
-        <h1>Вітаємо в CT!</h1>
+    <!-- Контейнер для створення акаунта -->
+    <div id="authCreate" class="glass-container">
+        <h2>Створення акаунта</h2>
+        <input type="text" id="username" placeholder="Ім'я користувача">
+        <input type="password" id="password" placeholder="Пароль">
+        <button id="createAccountButton">Створити акаунт</button>
+        <div id="errorMessage"></div>
     </div>
 
-    <div id="mainMenu" class="container">
-        <h2>Головне Меню</h2>
-        <button onclick="showInfo()">Інформація про застосунок</button>
-        <button id="scomButton" onclick="showSCOM()">ctUVBS</button>
-    </div>
-
-    <div id="info" class="container" style="display:none;">
-        <h2>CT v0.02</h2>
-        Це = CT.
-        <br>Офіційна назва = CommunicaTe.</br>
-        <br>Система комунікацій розроблена
-        для визначених цілей як от банк, месенджер та багато іншого.
-        Розробка почалась в липні 2024.</br>
-    </div>
-
-    <div id="scomContent" class="container" style="display:none;">
-        <h3>ctUVBS система</h3>
-        <div>
-            <h4>Створити акаунт</h4>
-            <input type="text" id="username" placeholder="Username">
-            <input type="password" id="password" placeholder="Password">
-            <button id="createAccountButton">Створити акаунт</button>
-            УВАГА! Сервер може не відповідати через хостинг. Якщо він не відповідає, то почекайте 10 хвилин і він точно відповість.
-        </div>
-
-        <div>
-            <h4>Ввійти</h4>
-            <input type="text" id="loginUsername" placeholder="Username">
-            <input type="password" id="loginPassword" placeholder="Password">
-            <button id="loginButton">Ввійти</button>
-        </div>
-
-        <!-- Додана кнопка для адміна -->
-        <button id="addMoneyButton" style="display:none;" onclick="showAddMoney()">Додати гроші</button>
-
-        <!-- Додана форма для додавання грошей -->
-        <div id="addMoneyContent" class="container" style="display:none;">
-            <h4>Додати гроші</h4>
-            <input type="text" id="targetUsername" placeholder="Username">
-            <input type="number" id="amountToAdd" placeholder="Кількість гривень">
-            <button onclick="addMoney()">Підтвердити</button>
-        </div>
-
-        <button id="startUsageButton" onclick="clearScreen()">Почати користуватись</button>
-        <div id="serverDataOutput"></div> <!-- Додано для відображення даних від сервера -->
-        <div id="errorMessage"></div> <!-- Додано для відображення повідомлення про помилку -->
-    </div>
-
-    <div id="newContent" class="container" style="display:none;">
-        <h3>ctUVBS = Неочікувана відповідь від серверу (402). Нижче надано відповідь серверу. Якщо нижче немає нічого - перевірте з'єднання з інтернетом.</h3>
-        <div id="visualResponse"></div> <!-- Додано для відображення даних від сервера -->
-    </div>
-
-    <div id="profileContent" class="container" style="display:none;">
-        <!-- Контент профілю тут буде відображатися -->
-    </div>
-
-    <div id="settingsMenu" class="container">
-        <!--<button onclick="eula()">EULA</button>-->
-        <span>Ваш код сесії = 0D03-B-CLI-DEV-OR. Цей код не є індивідуальним.</span>
+    <!-- Контейнер для спільного чату -->
+    <div id="forumContainer" class="glass-container" style="display:none;">
+        <h2>Спільний чат</h2>
+        <div id="chatHistory" style="color:azure;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; height:  300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px;"></div>
+        <input type="text" id="chatMessage" placeholder="Напишіть повідомлення...">
+        <button id="sendMessageButton">Відправити</button>
     </div>
 
     <script src="script.js"></script>
