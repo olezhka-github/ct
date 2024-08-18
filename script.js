@@ -1,5 +1,7 @@
 let socket;
 
+document.getElementById('settings').style.display = 'none';
+
 document.getElementById("toolbar").style.display = 'none';
 document.getElementById("authCreate").style.display = 'none';
 document.getElementById("ui").style.display = 'none';
@@ -84,7 +86,7 @@ function sendWebSocketRequest(data) {
 }
 
 function initializeChatSocket() {
-    socket = new WebSocket("https://ctservermodernversion.onrender.com/");
+    socket = new WebSocket("ws://127.0.0.1:2400");
 
     socket.onopen = function() {
         socket.send(JSON.stringify({ action: "load_chat_history" }));
@@ -129,5 +131,53 @@ function updateChat(username, message) {
     chatHistory.scrollTop = chatHistory.scrollHeight;  // Автопрокрутка до останнього повідомлення
 }
 document.getElementById('menuLink').addEventListener('click',function() {
-    document.getElementById('forumContainer').style.display = 'none'
+    document.getElementById('forumContainer').style.display = 'none';
+    document.getElementById('settings').style.display = 'none';
+    document.getElementById('ui').style.display = 'block'
 })
+document.getElementById('partnerLink').addEventListener('click',function() {
+    window.location.href = "https://roman-talk.onrender.com/";
+})
+document.getElementById('settingsLink').addEventListener('click',function() {
+    document.getElementById('ui').style.display = 'none';
+    document.getElementById('forumContainer').style.display = 'none';
+    document.getElementById('settings').style.display = 'block';
+
+
+    
+})
+function get_isc() {
+    const ip = '127.0.0.1';
+    const action = "get_isc";
+    
+    // Створення з'єднання WebSocket
+    const socket = new WebSocket("https://ctservermodernversion.onrender.com/");
+
+    socket.onopen = function() {
+        
+        socket.send(JSON.stringify([ip, '', '', action]));
+    };
+
+    socket.onmessage = function(event) {
+        try {
+            const response = JSON.parse(event.data);
+    
+            if (response.isc_value !== undefined) {
+                alert("ІКС: " + response.isc_value);
+            } else {
+                console.log("Отримане повідомлення не містить значення ІКС.");
+            }
+        } catch (e) {
+            console.error("Помилка при обробці повідомлення від сервера:", e);
+        }
+    };
+    
+
+    socket.onerror = function(error) {
+        console.error("WebSocket error: " + error.message);
+    };
+
+    socket.onclose = function() {
+        console.log("WebSocket з'єднання закрито");
+    };
+}
