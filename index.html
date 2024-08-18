@@ -12,6 +12,8 @@
         <nav>
             <ul>
                 <li><a id="menuLink"href="#home">Головна</a></li>
+                <li><a id="settingsLink"href="#settings">Налаштування</a></li>
+                <li><a id="partnerLink"href="#romantalk">Партнер сайту : Roman Talk</a></li>
                 <li><a id="forumLink" href="#forum">ctФорум</a></li>
             </ul>
         </nav>
@@ -47,6 +49,10 @@
         <div id="chatHistory" style="color:azure;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; height:  300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px;"></div>
         <input type="text" id="chatMessage" placeholder="Напишіть повідомлення...">
         <button id="sendMessageButton">Відправити</button>
+    </div>
+    <div id="settings" class="glass-container">
+        <h4>Налаштування</h4>
+        <button onclick="get_isc()">Переглянути ІКС</button>
     </div>
 
     <script src="script.js"></script>
