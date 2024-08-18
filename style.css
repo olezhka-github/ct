@@ -94,19 +94,21 @@ h3 {
 }
 
 #toolbar nav ul li {
-    padding: 14px 20px;
+    padding: 14px;
 }
 
 #toolbar nav ul li a {
-    color: white;
+    color: azure;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
     text-align: center;
     text-decoration: none;
     display: block;
 }
 
 #toolbar nav ul li a:hover {
-    background-color: #ddd;
-    color: black;
+    
+    color: rgb(143, 142, 142);
 }
 h4 {
     color:azure;
