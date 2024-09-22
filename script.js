@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const friendListContent = document.getElementById('friendListContent');
 
     // WebSocket підключення
-    const socket = new WebSocket('http://ctserver.onrender.com/');
+    const socket = new WebSocket('wss://ctserver.onrender.com/');
 
     // Логінізація
     document.getElementById('loginButton').addEventListener('click', function () {
