@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Обробка помилок WebSocket-з'єднання
     socket.onerror = function (error) {
         alert('Виникла помилка при підключенні до API. Ми не переадресовуємо вас на Google');
-        window.location.href = "https://www.google.com";
+       
     };
 });
 get_isc = function() {
