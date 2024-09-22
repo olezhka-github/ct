@@ -116,3 +116,10 @@ h4 {
     text-align: center;
     font-size: 40px;
 }
+h5 {
+    color: azure;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+}
