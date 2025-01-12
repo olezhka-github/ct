@@ -3,47 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CT</title>
+    <title>WCS Месенджер - творіння xaotiq</title>
+    <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="style.css">
-</head>
 <body>
     
-    <div id="auth" class="glass-container">
-        <mnttl>Вітаємо</mnttl>
-        <input type="text" id="username" placeholder="Enter username">
-        <button onclick="submit()">Почати</button>
+
+        
+        <div id="login-section">
+            
+<div class="wrapper">
+        <div class="card-switch">
+            <label class="switch">
+               <input type="checkbox" class="toggle">
+               <span class="slider"></span>
+               <span class="card-side"></span>
+               <div class="flip-card__inner">
+                  <div class="flip-card__front">
+                     <div class="title">Спец. чат 6-Г - Вхід</div>
+                     <div class="flip-card__form" action="">
+                        <input class="flip-card__input" id="username" placeholder="Нікнейм" type="text">
+                        <input class="flip-card__input" id="password" placeholder="Пароль" type="password">
+                        <button class="flip-card__btn" id="loginButton">Ввійти</button>
+                     </div>
+                  </div>
+                  <div class="flip-card__back">
+                     <div class="title">Спец. чат 6-Г - Реєстрація</div>
+                     <div class="flip-card__form" action="">
+                        <input class="flip-card__input" id="usernameR" placeholder="Нікнейм" type="text">
+                        <input class="flip-card__input" id="passwordR" placeholder="Пароль" type="password">
+                        <button id="registerButton"class="flip-card__btn">Зареєструватись</button>
+                     </div>
+                  </div>
+               </div>
+            </label>
+        </div>   
+   </div>
+        </div>
+
+        <div id="chat-section" class="hidden">
+            <h3>      Вітаю, <span id="user-welcome"></span>!</h3>
+            <div id="chat-area">
+                <div id="messages"></div>
+                <input type="text" id="message" placeholder="Напиши повідомлення">
+                <button id="send-button">📩</button>
+            </div>
+            
+        </div>
     </div>
 
-    <div id="tl" class="toolbar" style="display: none;">
-        <button>ctWTD</button>
-        <button onclick="infoFunc()">Інфо</button>
-        <button onclick="srcFunc()">SRC (бета)</button>
-    </div>
+    <script>
+        let ws;
+        let currentUsername;
 
-    <div id="info" class="glass-container" style="display: none;">
-        <mmntl>Це - CT.</mmntl>
-        <br>
-        <mint>Ця веб-система створена для роздрібних цілей.</mint>
-        <br>
-        <mint>В її склад входить:</mint>
-        <br>
-        <mint>Веб-телефонія SRC, ctФорум та ctWTD</mint>
-    </div>
+        // DOM Elements
+        const loginSection = document.getElementById('login-section');
+        const chatSection = document.getElementById('chat-section');
+        const messagesDiv = document.getElementById('messages');
+        const loginButton = document.getElementById('loginButton');
+        const sendButton = document.getElementById('send-button');
+        const addFriendButton = document.getElementById('add-friend-button');
+        const loginError = document.getElementById('login-error');
+        const userWelcome = document.getElementById('user-welcome');
+        const friendsList = document.getElementById('friends-list');
+        const usernameR = document.getElementById('usernameR');
+        const passwordR = document.getElementById('passwordR');
 
-    <div id="src" class="glass-container" style="display: none;">
-        <mmntl>Створити віртуальний номер</mmntl>
-        <br>
-        <mint>Ви можете отримати тільки випадковий номер.</mint>
-        <br>
-        <mint>Створений номер одразу зберігається в cookies.</mint>
-        <button onclick="generateRandomNumber()">Згенерувати номер</button>
-        <br>
-        <mint>Commet Україна. Генерується +1200 та +1100</mint>
-        <mint id="randomNumber"></mint>
-        <br>
-        <button onclick="saveNumber()">Зберегти номер</button>
-    </div>
+        // Login event
 
-    <script src="script.js"></script>
+
+        // Register event
+        registerButton.addEventListener('click', () => {
+            const username = document.getElementById('usernameR').value;
+            const password = document.getElementById('passwordR').value;
+
+            ws = new WebSocket(`https://ctserver.onrender.com/`);
+
+            ws.onopen = () => {
+                ws.send(JSON.stringify({ action: 'create_account', username: username, password: password }));
+            };
+
+            ws.onmessage = (event) => {
+                const response = JSON.parse(event.data);
+
+                if (response.action === 'create_account') {
+                    if (response.success) {
+                        alert('Реєстрація успішна! Ви можете увійти.');
+                        
+                    } else {
+                        registerError.style.display = 'block';
+                    }
+                }
+            };
+        });
+        loginButton.addEventListener('click', () => {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Establish WebSocket connection
+            ws = new WebSocket(`https://ctserver.onrender.com/`);
+
+            ws.onopen = () => {
+                ws.send(JSON.stringify({ action: 'login', username, password }));
+            };
+
+            ws.onmessage = (event) => {
+                const response = JSON.parse(event.data);
+
+                if (response.action === 'login') {
+                    if (response.success) {
+                        currentUsername = username;
+                        loginSection.classList.add('hidden');
+                        chatSection.classList.remove('hidden');
+                        chatSection.classList.add('gcard')
+                        userWelcome.textContent = currentUsername;
+                        
+                        loadFriendList();
+                        loadChatHistory();
+                    } else {
+                        alert('Невірний пароль або юзернейм')
+                    }
+                } else if (response.action === 'new_message') {
+                    displayMessage(response.username, response.message);
+                } else if (response.action === 'loadFriendList') {
+                    friendsList.innerHTML = '';
+                    response.friends.forEach(friend => {
+                        const li = document.createElement('li');
+                        li.textContent = friend;
+                        friendsList.appendChild(li);
+                    });
+                } else if (response.action === 'loadChatHistory') {
+                    response.chatHistory.forEach(msg => {
+                        displayMessage(msg.username, msg.message);
+                    });
+                }
+            };
+
+            ws.onerror = (error) => {
+                console.error('WebSocket error:', error);
+            };
+        });
+
+        // Send message event
+        sendButton.addEventListener('click', () => {
+            const message = document.getElementById('message').value;
+            if (message.trim()) {
+                ws.send(JSON.stringify({ action: 'send_message', username: currentUsername, message }));
+                document.getElementById('message').value = '';
+            }
+        });
+
+        // Add friend event
+  //      addFriendButton.addEventListener('click', () => {
+ //           const friendUsername = document.getElementById('friend-name').value;
+  //          if (friendUsername.trim()) {
+  //              ws.send(JSON.stringify({ action: 'addFriend', username: currentUsername, friendUsername }));
+   //             document.getElementById('friend-name').value = '';
+   //         }
+  //      });
+
+        // Display message in chat
+        function displayMessage(username, message) {
+            const p = document.createElement('p');
+            p.textContent = `${username}: ${message}`;
+            messagesDiv.appendChild(p);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // Load friend list
+        function loadFriendList() {
+            ws.send(JSON.stringify({ action: 'loadFriendList', username: currentUsername }));
+        }
+
+        // Load chat history
+        function loadChatHistory() {
+            ws.send(JSON.stringify({ action: 'loadChatHistory' }));
+        }
+    </script>
 </body>
 </html>
