@@ -6,6 +6,8 @@
     <title>WCS Месенджер - творіння xaotiq</title>
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="style.css">
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
 <body>
     
 
@@ -47,15 +49,38 @@
                 <div id="messages"></div>
                 <input type="text" id="message" placeholder="Напиши повідомлення">
                 <button id="send-button">📩</button>
+                </div>
+            </div>
+            <div class="hidden" id="private-section">
+                
+                    <p>Це ще не дороблено ☹️</p>
+                
             </div>
             
-        </div>
+
+                        
+<div class="hidden" id="radio-section">
+    
+    <label class="radio">
+        <input type="radio" name="radio"checked="" value="forum">
+        <span class="name">Форум</span>
+      </label>
+    <label class="radio">
+      <input type="radio" name="radio" value="private">
+      <span class="name">Приватні повідомлення</span>
+    </label>
+        
+  
+  
+            </div>
+    
+        
     </div>
 
     <script>
         let ws;
         let currentUsername;
-
+    
         // DOM Elements
         const loginSection = document.getElementById('login-section');
         const chatSection = document.getElementById('chat-section');
@@ -68,8 +93,29 @@
         const friendsList = document.getElementById('friends-list');
         const usernameR = document.getElementById('usernameR');
         const passwordR = document.getElementById('passwordR');
+        const registerButton = document.getElementById('registerButton')
+        const radioSection = document.getElementById('radio-section');
+        const privateSection = document.getElementById('private-section')
+        privateSection.style.display = 'none'
+        const radios = document.querySelectorAll('input[name="radio"]');
 
         // Login event
+
+          // Додати слухач подій на зміну стану
+    radios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            // Перевірити, яка радіо-кнопка обрана
+            const selectedValue = document.querySelector('input[name="radio"]:checked').value;
+            if (selectedValue === "forum") {
+                chatSection.style.display = 'flex'
+                privateSection.style.display = 'none'
+            }
+            else {
+                chatSection.style.display = 'none'
+                privateSection.style.display = 'flex'
+            }
+        });
+    });
 
 
         // Register event
@@ -82,16 +128,18 @@
             ws.onopen = () => {
                 ws.send(JSON.stringify({ action: 'create_account', username: username, password: password }));
             };
-
+            
             ws.onmessage = (event) => {
                 const response = JSON.parse(event.data);
-
-                if (response.action === 'create_account') {
+                
+                if (response.action === 'createAccount') {
+                    
                     if (response.success) {
-                        alert('Реєстрація успішна! Ви можете увійти.');
+                        alertify.success('Ви зареєструвались,тепер ви можете ввійти.');
                         
                     } else {
-                        registerError.style.display = 'block';
+                        
+                        alertify.alert(response.message)
                     }
                 }
             };
@@ -115,13 +163,17 @@
                         currentUsername = username;
                         loginSection.classList.add('hidden');
                         chatSection.classList.remove('hidden');
+                        privateSection.classList.remove('hidden');
+                        radioSection.classList.remove('hidden')
+                        radioSection.classList.add('radio-inputs')
                         chatSection.classList.add('gcard')
+                        privateSection.classList.add('gcard')
                         userWelcome.textContent = currentUsername;
                         
                         loadFriendList();
                         loadChatHistory();
                     } else {
-                        alert('Невірний пароль або юзернейм')
+                        alertify.error('Помилка 129 : Невірні дані входу / сесія вже активна')
                     }
                 } else if (response.action === 'new_message') {
                     displayMessage(response.username, response.message);
