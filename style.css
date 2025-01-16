@@ -35,7 +35,14 @@ body {
     width: 100%;
     box-sizing: border-box;
 }
-
+#messagesP {
+    height: 70%;  /* 70% висоти gcard */
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
 #send-message {
     width: 100%;
     display: flex;
@@ -390,3 +397,45 @@ p {
     background-color: #fff;
     font-weight: 600;
   }
+
+
+  .sidenav {
+    height: 100vh;
+    width: 60px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #333;
+    transition: width 0.3s ease;
+    overflow-x: hidden;
+}
+
+.sidenav:hover {
+    width: 200px;
+}
+
+.nav-item {
+    display: block;
+    padding: 20px 20px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+    transition: padding-left 0.3s ease;
+}
+
+.sidenav:hover .nav-item {
+    padding-left: 40px;
+}
+
+.nav-item:hover {
+    background-color: #575757;
+}
+
+.sidenav:hover .nav-item {
+    text-align: left;
+}
+
+.sidenav:hover .nav-item:first-child {
+    margin-top: 20px;
+}
