@@ -2,40 +2,39 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Обмеження джерел ресурсів через CSP -->
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://cdn.jsdelivr.net;">-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WCS Месенджер - творіння xaotiq</title>
   <link rel="icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css">
-  <!-- Підключення Alertify для сповіщень -->
-  <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css" />
-  
-  <!-- Вбудовані стилі -->
- 
+  <!-- Підключення Alertify з використанням SRI (якщо доступно) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css" unsafe-inline/>
 </head>
 <body>
   <!-- Секція для входу/реєстрації -->
-  <!-- From Uiverse.io by Praashoo7 --> 
-<div class="form" id="login-section">
-  <p id="heading">WCS</p>
-  <div class="field">
-  <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-  <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"></path>
-  </svg>
-    <input autocomplete="off" placeholder="Нікнейм" class="input-field" type="text" id="username">
+  <div class="form" id="login-section">
+    <p id="heading">WCS</p>
+    <p class="subhead">виконуючи будь які дії в месенжері ви повністю згоджуєтесь з <a href="умови_використання/index.html">Умовами використання</a></p>
+    <div class="field">
+      <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"></path>
+      </svg>
+      <input autocomplete="off" placeholder="Нікнейм" class="input-field" type="text" id="username">
+    </div>
+    <div class="field">
+      <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
+      </svg>
+      <input placeholder="Пароль" class="input-field" type="password" id="password">
+    </div>
+    <div class="btn">
+      <button class="button1" id="login-button">Вхід</button>
+      <button class="button2" id="register-button">Реєстрація</button>
+    </div>
   </div>
-  <div class="field">
-  <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
-  </svg>
-    <input placeholder="Пароль" class="input-field" type="password" id="password">
-  </div>
-  <div class="btn">
-  <button class="button1" id="login-button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Вхід&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
-  <button class="button2" id="register-button">Реєстрація</button>
-  </div>
-  <!--<button class="button3">Forgot Password</button> -->
-</div>
+  
   <!-- Секція загального чату -->
   <div id="chat-section" class="hidden gcard">
     <h3>Вітаю, <span id="user-welcome"></span>!</h3>
@@ -52,10 +51,8 @@
         <button type="button" id="sticker-button">Завантажити стікер</button>
       </div>
     </div>
-    <!-- Керування дзвінком -->
     <div id="call-controls" style="margin-top: 10px;">
-      <!-- <button id="joinCall">Приєднатися до дзвінка</button>
-      <button id="leaveCall" disabled>Покинути дзвінок</button> -->
+      <!-- Додайте управління дзвінками, якщо потрібно -->
     </div>
   </div>
 
@@ -75,68 +72,50 @@
   <div class="hidden gcard" id="private-section">
     <div id="messagesP"></div>
     <p>Оберіть користувача: <span id="chosen-user"></span></p>
-    <select id="checkbox-users">
-     
-    </select>
+    <select id="checkbox-users"></select>
     <div id="send-message">
       <input type="text" id="prvamsg" placeholder="Ваше повідомлення">
       <button id="send-private">📩</button>
     </div>
   </div>
 
-  <!-- Секція профілю ("Про себе") -->
+  <!-- Секція профілю -->
   <div class="hidden gcard" id="profile-section">
     <h3>Профіль користувача: <span id="profile-username"></span></h3>
     <h4>Про себе</h4>
     <p id="profile-about">Завантаження...</p>
     <textarea id="edit-about" placeholder="Введіть інформацію про себе..." rows="4" style="width: 100%;"></textarea>
     <button id="save-about" style="margin-top: 10px; padding: 10px 20px;">Зберегти</button>
+    <!-- Блок для відео аватару -->
+    <h4 style="margin-top: 20px;">Відео аватар</h4>
+    <div id="video-avatar-section">
+      <input type="file" id="video-avatar-upload" accept="video/*">
+      <video id="video-avatar-preview" width="100" height="100" autoplay loop muted style="display: none; margin-top: 10px;"></video>
+      <button id="save-video-avatar" style="margin-top: 10px; padding: 10px 20px;">Зберегти відео аватар</button>
+    </div>
+    <!-- Блок для статичного аватару -->
+    <h4 style="margin-top: 20px;">Статичний аватар</h4>
+    <div id="static-avatar-section">
+      <input type="file" id="static-avatar-upload" accept="image/*">
+      <img id="static-avatar-preview" width="100" height="100" style="display: none; margin-top: 10px;" alt="Preview">
+      <button id="save-static-avatar" style="margin-top: 10px; padding: 10px 20px;">Зберегти статичний аватар</button>
+    </div>
   </div>
 
   <!-- Секція префіксів -->
   <div id="prefix-section" class="hidden gcard">
     <h3>Оберіть свій префікс:</h3>
     <div id="prefix-options">
-      <label>
-        <input type="radio" name="prefix" value="[💙💛]">
-        💙💛
-      </label>
-      <label>
-        <input type="radio" name="prefix" value="[🔥]">
-        🔥
-      </label>
-      <label>
-        <input type="radio" name="prefix" value="[⭐]">
-        ⭐
-      </label>
-      <label>
-        <input type="radio" name="prefix" value="[💎]">
-        💎
-      </label>
-      <label>
-        <input type="radio" name="prefix" value="">
-        (Без префіксу)
-      </label>
-      <label>
-        <input type="radio" name="prefix" value="[ЧІНАЗЕС]">
-        ЧІНАЗЕС
-      </label>
-      <label>
-        <input type="radio" name="prefix" value="[кефтеме]">
-        кефтеме
-      </label>
-      <label>
-        <input type="radio" name="prefix" value="[Потужно]">
-        Потужно
-      </label>
-      <label>
-        <input type="radio" name="prefix" value="[абаюдна]">
-        абаюдна
-      </label>
-      <label>
-        <input type="radio" name="prefix" value="[UKRaine]">
-        UKRaine
-      </label>
+      <label><input type="radio" name="prefix" value="[💙💛]"> 💙💛</label>
+      <label><input type="radio" name="prefix" value="[🔥]"> 🔥</label>
+      <label><input type="radio" name="prefix" value="[⭐]"> ⭐</label>
+      <label><input type="radio" name="prefix" value="[💎]"> 💎</label>
+      <label><input type="radio" name="prefix" value=""> (Без префіксу)</label>
+      <label><input type="radio" name="prefix" value="[ЧІНАЗЕС]"> ЧІНАЗЕС</label>
+      <label><input type="radio" name="prefix" value="[кефтеме]"> кефтеме</label>
+      <label><input type="radio" name="prefix" value="[Потужно]"> Потужно</label>
+      <label><input type="radio" name="prefix" value="[абаюдна]"> абаюдна</label>
+      <label><input type="radio" name="prefix" value="[UKRaine]"> UKRaine</label>
     </div>
     <button id="save-prefix" class="flip-card__btn">Зберегти префікс</button>
   </div>
@@ -170,13 +149,33 @@
     </label>
   </div>
 
+  <!-- Підключення Alertify та основного скрипту (можна винести в окремий файл) -->
+  <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
   <script>
+    /*****************************************************************
+     *           1. Глобальні змінні та отримання IP-адреси          *
+     *****************************************************************/
     let ws;
     let currentUsername;
-    let currentPrefix = ""; // Змінна для збереження вибраного префіксу
+    let currentPrefix = "";
+    let currentVideoAvatar = "";
+    let currentStaticAvatar = "";
+    let clientIP = ""; // Глобальна змінна для IP
 
+    // Отримуємо IP-адресу один раз при завантаженні сторінки
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        clientIP = data.ip;
+        console.log('Завантажено IP клієнта:', clientIP);
+      })
+      .catch(error => {
+        console.error('Помилка отримання IP:', error);
+      });
 
-    // DOM-елементи
+    /*****************************************************************
+     *            2. DOM-елементи та початкове приховування           *
+     *****************************************************************/
     const loginSection = document.getElementById('login-section');
     const chatSection = document.getElementById('chat-section');
     const privateSection = document.getElementById('private-section');
@@ -192,7 +191,6 @@
     const radioSectionDiv = document.getElementById('radio-section');
     const sendPrivate = document.getElementById('send-private');
     const prvmsg = document.getElementById('prvamsg');
-    const userNav = document.getElementById('usernav');
     const chosenUser = document.getElementById('chosen-user');
     const profileUsername = document.getElementById('profile-username');
     const profileAbout = document.getElementById('profile-about');
@@ -202,21 +200,32 @@
     const admin = document.getElementById('adminpanelen');
     const usernameToBan = document.getElementById('usernameToBan');
     const savePrefixBtn = document.getElementById('save-prefix');
-    const checkboxUsers = document.getElementById('checkbox-users')
+    const checkboxUsers = document.getElementById('checkbox-users');
+
+    // Елементи для відео аватару
+    const videoAvatarUpload = document.getElementById('video-avatar-upload');
+    const videoAvatarPreview = document.getElementById('video-avatar-preview');
+    const saveVideoAvatarButton = document.getElementById('save-video-avatar');
+
+    // Елементи для статичного аватару
+    const staticAvatarUpload = document.getElementById('static-avatar-upload');
+    const staticAvatarPreview = document.getElementById('static-avatar-preview');
+    const saveStaticAvatarButton = document.getElementById('save-static-avatar');
 
     // Початкове приховування секцій
     privateSection.style.display = 'none';
     profileSection.style.display = 'none';
     prefixSection.style.display = 'none';
 
-    // WebSocket URL
-    const url = "wss://ctserver.onrender.com/";
+    // WebSocket URL (використовуйте wss:// для безпечного з'єднання)
+    const url = "ws:/127.0.0.1:2573/"; 
 
-    // Перемикання режимів (radio-кнопки)
+    /*****************************************************************
+     * 3. Логіка перемикання розділів через radio-кнопки (форум/приват/профіль/...) 
+     *****************************************************************/
     document.querySelectorAll('input[name="radio"]').forEach(radio => {
       radio.addEventListener('change', function () {
         const selectedValue = document.querySelector('input[name="radio"]:checked').value;
-        // Ховаємо всі секції
         chatSection.style.display = 'none';
         privateSection.style.display = 'none';
         profileSection.style.display = 'none';
@@ -237,7 +246,9 @@
       });
     });
 
-    // Обробка збереження вибраного префікса
+    /*****************************************************************
+     *          4. Збереження та зміна префікса (prefix)             *
+     *****************************************************************/
     savePrefixBtn.addEventListener('click', () => {
       const selected = document.querySelector('input[name="prefix"]:checked');
       if (selected) {
@@ -248,7 +259,74 @@
       }
     });
 
-    // Реєстрація
+    /*****************************************************************
+     * 5. Завантаження та збереження відео-аватару                   *
+     *****************************************************************/
+    videoAvatarUpload.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const videoURL = URL.createObjectURL(file);
+        videoAvatarPreview.src = videoURL;
+        videoAvatarPreview.style.display = 'block';
+        currentVideoAvatar = videoURL;
+      }
+    });
+
+    saveVideoAvatarButton.addEventListener('click', () => {
+      if (currentVideoAvatar) {
+        alertify.success("Відео аватар збережено!");
+        // Тут можна додати логіку надсилання даних відео аватару на сервер
+      } else {
+        alertify.error("Спочатку виберіть відео");
+      }
+    });
+
+    /*****************************************************************
+     * 6. Завантаження та збереження статичного аватару (зображення) *
+     *****************************************************************/
+    staticAvatarUpload.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const imageURL = URL.createObjectURL(file);
+        staticAvatarPreview.src = imageURL;
+        staticAvatarPreview.style.display = 'block';
+      }
+    });
+
+    saveStaticAvatarButton.addEventListener('click', () => {
+      if (staticAvatarUpload.files.length > 0) {
+        const file = staticAvatarUpload.files[0];
+        const formData = new FormData();
+        formData.append("avatar", file);
+        formData.append("username", currentUsername); // Передаємо ім'я користувача
+
+        fetch('/upload_static_avatar', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Припустимо, сервер повертає { success: true/false, message: "...", avatarUrl: "..." }
+          if (data.success) {
+            alertify.success(data.message);
+            currentStaticAvatar = data.avatarUrl;
+          } else {
+            alertify.error(data.message);
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          alertify.error("Помилка завантаження аватару");
+        });
+      } else {
+        alertify.error("Спочатку виберіть зображення");
+      }
+    });
+
+    /*****************************************************************
+     *       7. Обробка подій: Реєстрація, Вхід, Надсилання           *
+     *****************************************************************/
+    // 7.1. Реєстрація
     registerButton.addEventListener('click', () => {
       const username = document.getElementById('username').value.trim();
       const password = document.getElementById('password').value.trim();
@@ -258,15 +336,18 @@
       }
       ws = new WebSocket(url);
       ws.onopen = () => {
-        ws.send(JSON.stringify({ action: 'create_account', username, password }));
+        ws.send(JSON.stringify({ 
+          action: 'create_account', 
+          username, 
+          password,
+          ip: clientIP // Надсилаємо IP
+        }));
       };
       ws.onmessage = (event) => {
         const response = JSON.parse(event.data);
-        console.log(response);
         if (response.action === 'createAccount') {
           if (response.success) {
             alertify.success('Ви зареєструвались, тепер можете увійти.');
-            
           } else {
             alertify.error(response.message || 'Помилка реєстрації');
           }
@@ -277,7 +358,7 @@
       };
     });
 
-    // Вхід користувача
+    // 7.2. Вхід
     loginButton.addEventListener('click', () => {
       const username = document.getElementById('username').value.trim();
       const password = document.getElementById('password').value.trim();
@@ -287,21 +368,26 @@
       }
       ws = new WebSocket(url);
       ws.onopen = () => {
-        ws.send(JSON.stringify({ action: 'login', username, password }));
+        ws.send(JSON.stringify({ 
+          action: 'login', 
+          username, 
+          password,
+          ip: clientIP // Надсилаємо IP
+        }));
       };
-      ws.onmessage = async (event) => {
+      ws.onmessage = (event) => {
         const response = JSON.parse(event.data);
-        console.log(response);
         if (response.action === 'login') {
           if (response.success) {
             currentUsername = username;
             loginSection.classList.add('hidden');
-            loginSection.classList.remove('form')
             chatSection.classList.remove('hidden');
             privateSection.classList.remove('hidden');
             radioSectionDiv.style.display = 'flex';
             userWelcome.textContent = currentUsername;
             profileUsername.textContent = currentUsername;
+
+            // Якщо користувач - адмін/модер, показати панель
             if (['hideyoshi.xaotiq', 'moderator.roman'].includes(currentUsername)) {
               banRadio.classList.remove('hidden');
             } else {
@@ -313,52 +399,60 @@
           } else {
             alertify.error(response.message);
           }
-        } else if (response.action === 'new_message') {
+        }
+        // 7.3. Отримання нових повідомлень
+        else if (response.action === 'new_message') {
           if (response.type === 'sticker') {
             displaySticker(response.username, response.stickerUrl);
           } else {
-            displayMessage(response.username, response.message, response.prefix);
+            displayMessage(response.username, response.message, response.prefix, response.staticAvatar);
           }
-        } else if (response.action === 'loadChatHistory') {
+        }
+        // 7.4. Завантаження історії чату
+        else if (response.action === 'loadChatHistory') {
           response.chatHistory.forEach(msg => {
             if (msg.type === 'message') {
-              displayMessage(msg.username, msg.message, msg.prefix);
+              displayMessage(msg.username, msg.message, msg.prefix, msg.staticAvatar);
             } else if (msg.type === 'sticker') {
               displaySticker(msg.username, msg.stickerUrl);
             }
           });
-        } else if (response.action === 'private_message') {
+        }
+        // 7.5. Приватні повідомлення
+        else if (response.action === 'private_message') {
           if (response.recipient === currentUsername) {
-            displayPrivate(response.from, response.message);
-          } else if (response.from === currentUsername) {
-           // displayPrivate(`Ви до ${response.recipient}`, response.message);
+            displayPrivate(response.from, response.message, response.staticAvatar);
           }
-        } else if (response.action === 'get_profile') {
+        }
+        // 7.6. Завантаження профілю
+        else if (response.action === 'get_profile') {
           if (response.success) {
             profileAbout.textContent = 'Про себе = ' + (response.about || 'Немає інформації');
             editAbout.value = response.about || '';
           } else {
             profileAbout.textContent = 'Помилка завантаження профілю';
           }
-        } else if (response.action === 'update_profile') {
+        }
+        // 7.7. Оновлення профілю
+        else if (response.action === 'update_profile') {
           if (response.success) {
             profileAbout.textContent = 'Про себе = ' + (response.about || 'Немає інформації');
             alertify.success('Профіль оновлено');
           } else {
             alertify.error(response.message);
           }
-        } else if (response.action === 'loadUserList') {
-          // Отримали масив користувачів від сервера
+        }
+        // 7.8. Завантаження списку користувачів
+        else if (response.action === 'loadUserList') {
           loadUserList(response.users);
         }
-        // Обробка WebRTC сигналів (якщо є)
       };
       ws.onerror = (error) => {
         console.error('WebSocket error:', error);
       };
     });
 
-    // Надсилання загального повідомлення з префіксом
+    // 7.9. Надсилання загального повідомлення
     sendButton.addEventListener('click', () => {
       const message = document.getElementById('message').value.trim();
       if (message) {
@@ -366,58 +460,108 @@
           action: 'send_message', 
           username: currentUsername, 
           message, 
-          prefix: currentPrefix 
+          prefix: currentPrefix,
+          staticAvatar: currentStaticAvatar,
+          ip: clientIP // Надсилаємо IP
         }));
         document.getElementById('message').value = '';
       }
     });
 
-    // Надсилання стікера
+    // 7.10. Надсилання стікера
     stickerButton.addEventListener('click', () => {
       const stickerUrl = prompt("Вставте URL-адресу стікера:");
       if (stickerUrl && stickerUrl.trim()) {
-        ws.send(JSON.stringify({ action: 'send_sticker', username: currentUsername, stickerUrl }));
+        ws.send(JSON.stringify({ 
+          action: 'send_sticker', 
+          username: currentUsername, 
+          stickerUrl,
+          ip: clientIP // Надсилаємо IP
+        }));
       }
     });
 
-    // Надсилання приватного повідомлення з префіксом
-    // Обробка зміни вибору користувача у випадаючому списку
-document.getElementById('checkbox-users').addEventListener('change', function() {
-  document.getElementById('chosen-user').textContent = this.value;
-});
-// Надсилання приватного повідомлення з префіксом
-sendPrivate.addEventListener('click', () => {
-    const message = document.getElementById('prvamsg').value.trim();
-    const recipient = chosenUser .textContent.trim();
-    if (message && recipient) {
-      ws.send(JSON.stringify({ 
-        action: 'private_message', 
-        username: currentUsername, 
-        recipient, 
-        message, 
-        prefix: currentPrefix 
-      }));
-      displayPrivate(currentUsername, message); // Відображаємо власне повідомлення
-      document.getElementById('prvamsg').value = ''; // Очищаємо поле вводу
-    } else {
-      alertify.error('Оберіть користувача та напишіть повідомлення');
-    }
-  });
+    // 7.11. Приватні повідомлення
+    document.getElementById('checkbox-users').addEventListener('change', function() {
+      document.getElementById('chosen-user').textContent = this.value;
+    });
+    sendPrivate.addEventListener('click', () => {
+      const message = document.getElementById('prvamsg').value.trim();
+      const recipient = document.getElementById('chosen-user').textContent.trim();
+      if (message && recipient) {
+        ws.send(JSON.stringify({ 
+          action: 'private_message', 
+          username: currentUsername, 
+          recipient, 
+          message, 
+          prefix: currentPrefix,
+          staticAvatar: currentStaticAvatar,
+          ip: clientIP // Надсилаємо IP
+        }));
+        // Відобразити власне повідомлення відразу
+        displayPrivate(currentUsername, message, currentStaticAvatar);
+        document.getElementById('prvamsg').value = '';
+      } else {
+        alertify.error('Оберіть користувача та напишіть повідомлення');
+      }
+    });
 
-
-    // Відображення загального повідомлення з урахуванням префікса
-    function displayMessage(username, message, prefix) {
+    /*****************************************************************
+     *        8. Відображення повідомлень та стікерів на екрані      *
+     *****************************************************************/
+    function displayMessage(username, message, prefix, avatar) {
       const p = document.createElement('p');
+      const avatarContainer = document.createElement('span');
+
+      // Якщо повідомлення від поточного користувача - показуємо його аватар/відео
+      if (username === currentUsername) {
+        if (currentVideoAvatar) {
+          const videoEl = document.createElement('video');
+          videoEl.src = currentVideoAvatar;
+          videoEl.width = 50;
+          videoEl.height = 50;
+          videoEl.autoplay = true;
+          videoEl.loop = true;
+          videoEl.muted = true;
+          videoEl.style.marginRight = "5px";
+          avatarContainer.appendChild(videoEl);
+        } else if (currentStaticAvatar) {
+          const img = document.createElement('img');
+          img.src = currentStaticAvatar;
+          img.width = 50;
+          img.height = 50;
+          img.style.marginRight = "5px";
+          avatarContainer.appendChild(img);
+        }
+      } else {
+        // Для інших користувачів – якщо сервер передав статичний аватар
+        if (avatar) {
+          const img = document.createElement('img');
+          img.src = avatar;
+          img.width = 50;
+          img.height = 50;
+          img.style.marginRight = "5px";
+          avatarContainer.appendChild(img);
+        } else {
+          const img = document.createElement('img');
+          img.src = 'default-avatar.png';
+          img.width = 50;
+          img.height = 50;
+          img.style.marginRight = "5px";
+          avatarContainer.appendChild(img);
+        }
+      }
+
       let displayName = username;
       if (prefix && prefix.trim() !== "") {
         displayName = prefix + " " + username;
       }
-      p.textContent = `${displayName}: ${message}`;
+      avatarContainer.appendChild(document.createTextNode(`${displayName}: ${message}`));
+      p.appendChild(avatarContainer);
       messagesDiv.appendChild(p);
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
 
-    // Відображення стікера
     function displaySticker(username, stickerUrl) {
       const p = document.createElement('p');
       const img = document.createElement('img');
@@ -429,82 +573,141 @@ sendPrivate.addEventListener('click', () => {
       messagesDiv.appendChild(p);
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
-    function displayPrivate(from, message) {
-    const p = document.createElement('p');
-    let displayName = from === currentUsername ? `Ви` : from; // Відображаємо "Ви" для власних повідомлень
-    p.textContent = `${displayName}: ${message}`;
-    messagesP.appendChild(p);
-    messagesP.scrollTop = messagesP.scrollHeight; // Прокручуємо вниз
-  }
 
+    function displayPrivate(from, message, avatar) {
+      const p = document.createElement('p');
+      const avatarContainer = document.createElement('span');
 
-    // Завантаження списку користувачів для приватного чату та адмінпанелі
+      if (from === currentUsername) {
+        if (currentVideoAvatar) {
+          const videoEl = document.createElement('video');
+          videoEl.src = currentVideoAvatar;
+          videoEl.width = 50;
+          videoEl.height = 50;
+          videoEl.autoplay = true;
+          videoEl.loop = true;
+          videoEl.muted = true;
+          videoEl.style.marginRight = "5px";
+          avatarContainer.appendChild(videoEl);
+        } else if (currentStaticAvatar) {
+          const img = document.createElement('img');
+          img.src = currentStaticAvatar;
+          img.width = 50;
+          img.height = 50;
+          img.style.marginRight = "5px";
+          avatarContainer.appendChild(img);
+        }
+      } else {
+        if (avatar) {
+          const img = document.createElement('img');
+          img.src = avatar;
+          img.width = 50;
+          img.height = 50;
+          img.style.marginRight = "5px";
+          avatarContainer.appendChild(img);
+        } else {
+          const img = document.createElement('img');
+          img.src = 'default-avatar.png';
+          img.width = 50;
+          img.height = 50;
+          img.style.marginRight = "5px";
+          avatarContainer.appendChild(img);
+        }
+      }
+      let displayName = (from === currentUsername) ? "Ви" : from;
+      avatarContainer.appendChild(document.createTextNode(`${displayName}: ${message}`));
+      p.appendChild(avatarContainer);
+      messagesP.appendChild(p);
+      messagesP.scrollTop = messagesP.scrollHeight;
+    }
+
+    /*****************************************************************
+     * 9. Завантаження списку користувачів, історії чату, профілю    *
+     *****************************************************************/
     function loadFriendList() {
-      ws.send(JSON.stringify({ action: 'loadUserList', username: currentUsername }));
+      ws.send(JSON.stringify({ 
+        action: 'loadUserList', 
+        username: currentUsername,
+        ip: clientIP
+      }));
     }
+
     function loadUserList(users) {
-  // Очищуємо список для адмінпанелі
-  usernameToBan.innerHTML = '';
-  // Очищуємо контейнер чекбоксів
-  const checkboxContainer = document.getElementById('checkbox-users');
-  checkboxContainer.innerHTML = '';
+      usernameToBan.innerHTML = '';
+      checkboxUsers.innerHTML = '';
+      users.forEach(user => {
+        const banOption = document.createElement('option');
+        banOption.id = user;
+        banOption.value = user;
+        banOption.text = user;
+        usernameToBan.appendChild(banOption);
 
-  users.forEach(user => {
-    // Додаємо опцію для адмінпанелі
-    const banoption = document.createElement('option');
-    const opt = document.createElement('option')
-    banoption.id = user;
-    banoption.value = user;
-    banoption.text = user;
-    opt.text = user;
-    opt.value = user;
-    checkboxUsers.appendChild(opt)
-    usernameToBan.appendChild(banoption);
-
-    // Створюємо чекбокс з іменем користувача
-    const checkboxWrapper = document.createElement('div');
-    checkboxWrapper.className = 'checkbox-wrapper';
-
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.id = `checkbox_${user}`;
-    checkbox.value = user;
-    checkbox.name = 'userCheckbox';
-
-    const label = document.createElement('label');
-    label.htmlFor = `checkbox_${user}`;
-    label.textContent = user;
-
-    checkboxWrapper.appendChild(checkbox);
-    checkboxWrapper.appendChild(label);
-    checkboxContainer.appendChild(checkboxWrapper);
-  });
-}
-
-    // Завантаження історії загального чату
-    function loadChatHistory() {
-      ws.send(JSON.stringify({ action: 'loadChatHistory', username: currentUsername }));
+        const opt = document.createElement('option');
+        opt.value = user;
+        opt.text = user;
+        checkboxUsers.appendChild(opt);
+      });
     }
-    // Завантаження профілю ("Про себе")
+
+    function loadChatHistory() {
+      ws.send(JSON.stringify({ 
+        action: 'loadChatHistory', 
+        username: currentUsername,
+        ip: clientIP
+      }));
+    }
+
     function loadProfile() {
       if (ws && currentUsername) {
-        ws.send(JSON.stringify({ action: 'get_profile', username: currentUsername }));
+        ws.send(JSON.stringify({ 
+          action: 'get_profile', 
+          username: currentUsername,
+          ip: clientIP
+        }));
       }
     }
-    // Функція для бану користувача (адмін)
+
+    /*****************************************************************
+     * 10. Збереження профілю (кнопка "Зберегти" у профілі)          *
+     *****************************************************************/
+    saveAbout.addEventListener('click', () => {
+      const aboutText = editAbout.value.trim();
+      if (!aboutText) {
+        // Можна дозволити пустий рядок або попереджати
+      }
+      ws.send(JSON.stringify({
+        action: 'update_profile',
+        username: currentUsername,
+        about: aboutText,
+        ip: clientIP
+      }));
+    });
+
+    /*****************************************************************
+     * 11. Адмін-функція бану користувача                            *
+     *****************************************************************/
     function TryToBanUser() {
       const sel_val = usernameToBan.value.trim();
+      if (sel_val === 'hideyoshi.xaotiq') {
+        alertify.error('Ви не маєте права блокувати цього користувача.');
+        return;
+      }
       const tokenprompt = prompt('Введіть токен взаємодії');
       const resn = prompt('Введіть причину');
-      ws.send(JSON.stringify({ action: 'ban_user', username: sel_val, duration: 10, token: tokenprompt, reason: resn, banned_by: currentUsername }));
+      ws.send(JSON.stringify({ 
+        action: 'ban_user', 
+        username: sel_val, 
+        duration: 10, 
+        token: tokenprompt, 
+        reason: resn, 
+        banned_by: currentUsername,
+        ip: clientIP
+      }));
     }
 
-    // Прив’язка WebRTC (якщо потрібно)
-    // joinCallButton.addEventListener('click', joinCall);
-    // leaveCallButton.addEventListener('click', leaveCall);
   </script>
-  
-  <!-- Скрипт для перехоплення кліків по посиланнях з "https://" -->
+
+  <!-- Перехоплення кліків за посиланнями з "https://" -->
   <script>
     document.addEventListener('click', function(e) {
       const anchor = e.target.closest('a');
@@ -512,7 +715,6 @@ sendPrivate.addEventListener('click', () => {
         const href = anchor.getAttribute('href');
         if (href && href.startsWith('https://')) {
           e.preventDefault();
-          // Перенаправляємо користувача через сторінку редіректу
           window.location.href = '/redirect?s=' + encodeURIComponent(href);
         }
       }
