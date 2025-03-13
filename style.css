@@ -475,3 +475,24 @@ p {
       height: 35px;
   }
 }
+
+#chat-container {
+  max-height: 400px; /* Обмежуємо висоту контейнера */
+  overflow-y: auto;  /* Додаємо вертикальний скролінг */
+  border: 1px solid #ccc; /* Для наочності додаємо рамку */
+  padding: 10px;
+}
+
+#chat-area {
+  height: 100%;
+}
+
+#messages {
+  max-height: 350px; /* Встановлюємо максимальну висоту для області повідомлень */
+  overflow-y: scroll; /* Скролінг для повідомлень */
+}
+.subhead {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: small;
+  color: #ccc;
+}
