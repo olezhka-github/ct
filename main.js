@@ -1,6 +1,6 @@
 const avatarPaths = {}
-const wsUrl = "ws://127.0.0.1:2573/";
-const NonWsUrl = 'http://127.0.0.1:2573/'
+const wsUrl = "wss://ctserver.onrender.com/";
+const NonWsUrl = 'http://ctserver.onrender.com/'
 function avjs() {
   // Об'єкт для збереження шляхів до аватарів за юзернеймом
 
